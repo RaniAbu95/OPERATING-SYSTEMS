@@ -1,0 +1,62 @@
+rani.aboraya, gazal 
+rani aboraya (316396787), mohammed galia (315091389)
+EX: 5
+
+FILES:
+whatsappServer.cpp
+whatsappClient.cpp
+README -- this file.
+Makefile -- the make file to produce an executable file.
+
+
+ANSWERS:
+
+Q1.You are required to add one more command: “leave_group <group name>”–the client will be 
+removed from the specified group. If the group becomes empty it should be removed (i.e. it will be
+valid to use <group name> again).
+
+a.Which changes are required in the client side in order to support the new command?
+we must check if the command is valid and send it to the server.
+the command is valid when the firt word in the command line is "leave_group"
+and the second one is a name.at any other case the command should fail.
+
+b.Which changes are required in the server side in order to support the new command?
+the changes that the server should make: 
+1) to check if the the group exist.
+2) to check if the sender is within the group.
+if the first two conndition takes place, the server should:
+check if the command sender is the last client who remains in the group,
+and in such a case removing the group is required.
+this could be easly since we manage the clients groups in a map<string,vector<int>>,
+which a map containing pairs - the first one is the name of the group and the second is
+a vector of int that contains all the sockets descriptors of the members wihin the group.
+
+Q2. Why do we prefer TCP over UDP in this exercise?
+
+    Because TCP has few notable benefits over UDP:
+        - reliable
+        - connection oriented
+        - takes care of lost/corrupted packets
+    while UDP does not supply those features, that are needed in this exercise.
+
+Q3. Give two examples of applications that use UDP. Why UDP is preferred
+    for them?
+
+    Application examples:
+        - VOIP
+        - Gaming
+    In both cases low latency is crucial for the applications to be relevant.
+
+Q4. In this exercise, in case of a server crash all the data
+is lost (we say that the server is a single point of failure). Describe
+high level design for a system that is able to recover from failures (we
+allow some of the data to be lost).
+
+    A simple solution will be that every client saves locally the data it sends
+    to the server. That way, we have all the information distributed between all
+    the clients that were connected and sent data. The data can be recovered by
+    collecting the data from all of the clients.
+    Another option that is safer an more complicated, could be to send the data
+    from the server to all of the clients. That way, we will need only one
+    client that was up to date when the server fell, in order to recover the
+    system.

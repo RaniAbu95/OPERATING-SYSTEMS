@@ -1,0 +1,30 @@
+hassamoura rani.aboraya
+hassan moura (205352115) rani aboraya (316396787)
+EX: 4
+
+
+Files:
+
+	README - this file
+	
+	CacheFS.cpp - A cpp file contain the implementation of a file system.
+
+	
+    Makefile - A "make" command  produces an executable files.
+    
+    
+    Answers.pdf - A pdf file containing all the answers of the questions.
+    
+Remarks: 
+
+    CacheFS.cpp design: 
+	in this file we implemented cache file system. to help us implement this we used many
+    data structures and structs. first we have vector called blocksUsedVector this one help
+    us know which block was running first and which one after it and so. this helps us
+    implementing the LRU algorithm. we also have map of string  as a key and vector of
+    int as a value, this map contains for each file path the list of his id's.
+    we also have map of the fdBlocks. for each file which blocks id's it contains.
+    also we created two structs, one is Block that contains many fields of the block
+    and the other one is caching_state that contains the cache data structure and some
+    more fields. running the submitted makefile should make cacheFS library that user
+    can use it's functions to read and open file without reaching the desk every time.
